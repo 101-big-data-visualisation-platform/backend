@@ -1,18 +1,27 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { DataService } from './data.service';
-import { DataDto } from './data.dto';
 
 @Controller('data')
 export class DataController {
     constructor(private dataService: DataService) {}
 
     @Get('battery')
-    public getBatteryData(){
-        return this.dataService.getBatteryData();
+    public async getBatteryData(){
+        return await this.dataService.getBatteryData();
     }
 
     @Get('tank')
-    public getTankstateData(){
-        return this.dataService.getTankstateData();
+    public async getTankstateData(){
+        return await this.dataService.getTankstateData();
+    }
+
+    @Get('/battery/:id')
+    public async getBatteryById(@Param('id') id: number){
+        return await this.dataService.getBatteryById(id);
+    }
+
+    @Get('/tank/:id')
+    public async getTankStateById(@Param('id') id: number){
+        return await this.dataService.getTankStateById(id);
     }
 }
