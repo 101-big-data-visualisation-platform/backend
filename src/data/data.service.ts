@@ -10,8 +10,8 @@ export class DataService {
         return new Promise((resolve) => {
             this.data.forEach(element => {
                 batteryData.push({
-                    timeStamp: element.timeStamp,
-                    battery: element.battery
+                    x: element.timeStamp,
+                    y: element.battery
                 });
             });
             return resolve(batteryData);
@@ -24,8 +24,8 @@ export class DataService {
         return new Promise((resolve) => {
             this.data.forEach(element => {
                 tankData.push({
-                    timeStamp: element.timeStamp,
-                    tankState: element.tankState
+                    x: element.timeStamp,
+                    y: element.tankState
                 });
             });
             return resolve(tankData);    
@@ -40,8 +40,8 @@ export class DataService {
                 if(element.deviceID === sensorID){
                     tankData.push({
                         ID: element.deviceID,
-                        timeStamp: element.timeStamp,
-                        battery: element.battery
+                        x: element.timeStamp,
+                        y: element.battery
                     });
                 }
             });
@@ -57,8 +57,8 @@ export class DataService {
                 if(element.deviceID === sensorID){
                     tankData.push({
                         ID: element.deviceID,
-                        timeStamp: element.timeStamp,
-                        tankState: element.tankState
+                        x: element.timeStamp,
+                        y: element.tankState
                     });
                 }
             });
