@@ -5,27 +5,64 @@ import { DATA } from './data.mock';
 export class DataService {
     private data = DATA;
 
-    public getBatteryData(){
+    public getBatteryData(): Promise<any>{
         let batteryData = [];
-        this.data.forEach(element => {
-            batteryData.push({
-                timeStamp: element.timeStamp,
-                battery: element.battery
+        return new Promise((resolve) => {
+            this.data.forEach(element => {
+                batteryData.push({
+                    timeStamp: element.timeStamp,
+                    battery: element.battery
+                });
             });
+            return resolve(batteryData);
         });
-        return batteryData;
+        
     }
 
-
-    public getTankstateData(){
+    public getTankstateData(): Promise<any>{
         let tankData = [];
-        this.data.forEach(element => {
-            tankData.push({
-                timeStamp: element.timeStamp,
-                tankState: element.tankState
+        return new Promise((resolve) => {
+            this.data.forEach(element => {
+                tankData.push({
+                    timeStamp: element.timeStamp,
+                    tankState: element.tankState
+                });
             });
+            return resolve(tankData);    
         });
-        return tankData;
     }
 
+    public getBatteryById(id: number): Promise<any>{
+        const sensorID = Number(id);
+        let tankData = [];
+        return new Promise((resolve) => {
+            this.data.forEach(element => {
+                if(element.deviceID === sensorID){
+                    tankData.push({
+                        ID: element.deviceID,
+                        timeStamp: element.timeStamp,
+                        battery: element.battery
+                    });
+                }
+            });
+            return resolve(tankData);
+        });
+    }
+
+    public getTankStateById(id: number): Promise<any>{
+        const sensorID = Number(id);
+        let tankData = [];
+        return new Promise((resolve) => {
+            this.data.forEach(element => {
+                if(element.deviceID === sensorID){
+                    tankData.push({
+                        ID: element.deviceID,
+                        timeStamp: element.timeStamp,
+                        tankState: element.tankState
+                    });
+                }
+            });
+            return resolve(tankData);
+        });
+    }
 }
