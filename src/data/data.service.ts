@@ -14,6 +14,9 @@ export class DataService {
                     y: element.battery
                 });
             });
+            batteryData.sort(function(a, b){
+                return a.x - b.x;
+            });
             return resolve(batteryData);
         });
         
@@ -28,24 +31,31 @@ export class DataService {
                     y: element.tankState
                 });
             });
+            tankData.sort(function(a, b){
+                return a.x - b.x;
+            });
+
             return resolve(tankData);    
         });
     }
 
     public getBatteryById(id: number): Promise<any>{
         const sensorID = Number(id);
-        let tankData = [];
+        let batteryData = [];
         return new Promise((resolve) => {
             this.data.forEach(element => {
                 if(element.deviceID === sensorID){
-                    tankData.push({
+                    batteryData.push({
                         ID: element.deviceID,
                         x: element.timeStamp,
                         y: element.battery
                     });
                 }
             });
-            return resolve(tankData);
+            batteryData.sort(function(a, b){
+                return a.x - b.x;
+            });
+            return resolve(batteryData);
         });
     }
 
@@ -61,6 +71,9 @@ export class DataService {
                         y: element.tankState
                     });
                 }
+            });
+            tankData.sort(function(a, b){
+                return a.x - b.x;
             });
             return resolve(tankData);
         });
