@@ -78,4 +78,16 @@ export class DataService {
             return resolve(tankData);
         });
     }
+
+    public getUniqueDeviceId(): Promise<any>{
+        let uniqueIds = [];
+        return new Promise((resolve) => {
+            this.data.forEach(element => {
+                if(!uniqueIds.includes(Number(element.deviceID))){
+                    uniqueIds.push(element.deviceID);
+                }
+            });
+            return resolve(uniqueIds);
+        });
+    }
 }

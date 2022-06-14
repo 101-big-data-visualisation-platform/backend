@@ -5,6 +5,11 @@ import { DataService } from './data.service';
 export class DataController {
     constructor(private dataService: DataService) {}
 
+    @Get('uniqueIds')
+    public async getUniqueIds(){
+        return await this.dataService.getUniqueDeviceId();
+    }
+
     @Get('battery')
     public async getBatteryData(){
         return await this.dataService.getBatteryData();
