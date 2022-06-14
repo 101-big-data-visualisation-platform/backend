@@ -23163,13 +23163,6 @@ export const DATA = [
     "tankState": 1
   },
   {
-    "deviceID": 1234,
-    "timeStamp": 2001,
-    "battery": 4.5,
-    "Battery": 4.5,
-    "tankState": 1
-  },
-  {
     "deviceID": 4134123,
     "timeStamp": 1607545413000,
     "battery": 2.8101563454,
